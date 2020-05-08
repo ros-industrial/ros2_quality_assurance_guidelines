@@ -283,6 +283,7 @@ Check out [Experimental](#experimental)
         - ROS_DISTRO="dashing" ROS_REPO=main
         - ROS_DISTRO="eloquent" ROS_REPO=testing
         - ROS_DISTRO="eloquent" ROS_REPO=main
+        - ROS_DISTRO="foxy" # Using osrf/nightly-build docker image
 
     install:
       - git clone --quiet --depth 1 https://github.com/ros-industrial/industrial_ci.git .industrial_ci -b master
@@ -319,6 +320,10 @@ Check out [Experimental](#experimental)
 
     eloquent-testing:
       script: .industrial_ci/gitlab.sh ROS_DISTRO=eloquent ROS_REPO=testing
+
+    # Using osrf/nightly-build docker image
+    foxy:
+      script: .industrial_ci/gitlab.sh ROS_DISTRO=foxy
     ```
 
 ### **Common Issues**
