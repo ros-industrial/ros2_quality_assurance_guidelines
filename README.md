@@ -98,7 +98,26 @@ There are typically 3 ways to setup dependencies in ROS2. **rosdep** and **vcsto
 
         cd <workspace-directory>
         vcs import --recursive src < my.repos
-
+   
+   Here is an example of the `.repos` file
+   
+   ```yaml
+   repositories:
+     rmf_core:
+       type: git
+       url: https://github.com/osrf/rmf_core.git
+       version: master
+  
+    rmf_schedule_visualizer:
+      type: git
+      url: https://github.com/osrf/rmf_schedule_visualizer.git
+      version: master
+  
+    traffic_editor:
+      type: git
+      url: https://github.com/osrf/traffic_editor.git
+      version: master
+   ```
 3. **Others**
    
    For other dependencies that are not under **standard debian(apt)** or can not be built using `colcon build`, document the setup process in detail and setup accordingly in the CI as instructed [here](#common-issues).
