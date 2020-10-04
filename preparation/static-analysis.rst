@@ -40,24 +40,28 @@ For example, if you want to use ``ament_cpplint`` on a ``.cpp`` file,
 
       $ ament_cpplint -h
 
-      usage: ament_cpplint [-h] [--filters FILTER,FILTER,...] [--linelength N] [--root ROOT]
-                           [--xunit-file XUNIT_FILE] [paths [paths ...]]
+      usage: ament_cpplint [-h] [--filters FILTER,FILTER,...] [--linelength N]
+                           [--root ROOT] [--xunit-file XUNIT_FILE]
+                           [paths [paths ...]]
 
       Check code against the Google style conventions using cpplint.
 
       positional arguments:
-        paths                 The files or directories to check. For directories files ending
-                              in '.c', '.cc', '.cpp', '.cxx', '.h', '.hh', '.hpp', '.hxx' will
-                              be considered. (default: ['.'])
+        paths                 The files or directories to check. For
+                              directories files ending in '.c', '.cc', '.cpp',
+                              '.cxx', '.h', '.hh', '.hpp', '.hxx' will be
+                              considered. (default: ['.'])
 
       optional arguments:
         -h, --help            show this help message and exit
         --filters FILTER,FILTER,...
-                              A comma separated list of category filters to apply (default: None)
+                              A comma separated list of category filters to
+                              apply (default: None)
         --linelength N        The maximum line length (default: 100)
         --root ROOT           The --root option for cpplint (default: None)
         --xunit-file XUNIT_FILE
-                              Generate a xunit compliant XML file (default: None)
+                              Generate a xunit compliant XML file (default:
+                              None)
 
    Next simply run the command
 
