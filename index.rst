@@ -6,6 +6,9 @@
 ROS 2 Continuous Integration Documentation
 ==========================================
 
+This document contains instructions for integrating CI into the development
+workflow of ROS 2.0 packages under ROS-Industrial Consortium Asia Pacific.
+
 .. toctree::
    :maxdepth: 2
    :caption: Introduction
@@ -17,11 +20,5 @@ ROS 2 Continuous Integration Documentation
    :caption: Preparation
 
    preparation/dependencies
+   preparation/static-analysis
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

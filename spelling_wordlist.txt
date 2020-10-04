@@ -1,3 +1,7 @@
+CMake
 instantiation
+linter
+ros
 rosdep
+uncomment
 vcstool
