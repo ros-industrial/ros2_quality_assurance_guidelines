@@ -74,5 +74,5 @@ Others
 ------
 
 For other dependencies that are not under **standard debian(apt)** or can
-not be built using `colcon build`, document the setup process in detail and
+not be built using ``colcon build``, document the setup process in detail and
 setup accordingly in the CI as instructed in the Common Issue section.
