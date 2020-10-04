@@ -23,3 +23,10 @@ workflow of ROS 2.0 packages under ROS-Industrial Consortium Asia Pacific.
    preparation/static-analysis
    preparation/unit-test
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Continuous Integration
+
+   ci/travis-ci
+   ci/gitlab-ci
+
