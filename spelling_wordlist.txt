@@ -1,6 +1,9 @@
 CMake
+gmock
+gtest
 instantiation
 linter
+pytest
 ros
 rosdep
 uncomment

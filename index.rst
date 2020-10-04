@@ -21,4 +21,5 @@ workflow of ROS 2.0 packages under ROS-Industrial Consortium Asia Pacific.
 
    preparation/dependencies
    preparation/static-analysis
+   preparation/unit-test
 
