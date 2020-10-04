@@ -42,7 +42,7 @@ style:
   stage: style
   script:
     # Run Doc8 Lint
-    - doc8 .
+    - doc8 --ignore-path _build
     # Check Spelling
     - make spelling
     - find . -name *.spelling -exec cat {} \;
