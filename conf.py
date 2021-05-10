@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'ROSI-AP CI'
+project = 'ROS-I Quality Assurance'
 copyright = '2020, ROS Industrial Asia Pacific'
 author = 'Chen Bainian'
 
