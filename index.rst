@@ -49,3 +49,13 @@ into the development workflow.
    ci/gitlab-ci
    ci/code-coverage
    ci/buildfarm
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Troubleshooting 
+
+   faq/mixin-setup
+
+
+
+

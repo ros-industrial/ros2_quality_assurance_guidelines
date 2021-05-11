@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'ROS-I Quality Assurance'
-copyright = '2020, ROS Industrial Asia Pacific'
+copyright = '2021, ROS Industrial Asia Pacific'
 author = 'Chen Bainian'
 
 # The full version, including alpha/beta/rc tags
