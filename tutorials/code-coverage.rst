@@ -77,6 +77,8 @@ After that, run the test(s)::
 
    colcon test --pytest-with-coverage --pytest-args --cov-report=term --event-handlers console_direct+
 
+**Python**
+
 The python code coverage report would be generated in the :file:`build/<package_name>/` directory. Let's take a look at the ``packml_plc`` as an example, which contains only python files::
    
    cd ~/packml_ros2/build/packml_plc/
@@ -94,6 +96,8 @@ The directory structure would look something like this:
 The report summary could be found in either the :file:`coverage.html/index.html` directory, or the :file:`pytest.xml`. The ``index.html`` code coverage summary would look similar to this:
 
 .. image:: ../assets/codecv_py.png
+
+**C++**
 
 Moving on to the code coverage of the cpp files, ensure that ``lcov`` and ``colcon-lcov-result`` has been setup. We would be looking at ``packml_sm`` for this example, let's return to the root directory first::
 
