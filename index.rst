@@ -52,7 +52,7 @@ into the development workflow.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Troubleshooting 
+   :caption: Guide 
 
    faq/mixin-setup
 

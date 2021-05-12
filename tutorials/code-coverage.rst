@@ -40,11 +40,18 @@ After that, run ``colcon test``::
 C++ Code Coverage
 -----------------
 
-To see the report for ``cpp`` files, the report could be generated via the following command::
+To generate the code coverage report for the ``cpp`` files, the ``colcon-lcov-result`` plugin would be used. More details on the plugin could be found `here <https://github.com/colcon/colcon-lcov-result>`__.
+
+Install the plugin via ``apt``::
+
+   sudo apt install lcov			# Prerequiste 
+   sudo apt install python3-colcon-lcov-result  # The colcon plugin
+
+After the plugin is installed, the report could be generated via the following command::
 
    colcon lcov-result
 
-A new directory would be generated and the report would be available in the ``lcov/`` directory. (The report would be in a ``html`` format.)
+A new directory would be generated and the report would be available in the ``lcov/`` directory as ``index.html``.
 
 Python Code Coverage
 --------------------
