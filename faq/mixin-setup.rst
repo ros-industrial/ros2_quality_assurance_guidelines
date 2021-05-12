@@ -1,9 +1,9 @@
-
 Mixin setup
 ===========
 
-Mixins are “configuration profiles” which can be used to compile ROS 2 with additional flags more easily, and are stored locally in ``~/.colcon``.
-
+Mixins are “configuration profiles” which can be used to
+compile ROS 2 with additional flags more easily, and are
+stored locally in ``~/.colcon``.
 
 .. _mxsetup:
 
