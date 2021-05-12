@@ -10,3 +10,15 @@ ros
 rosdep
 uncomment
 vcstool
+git
+colcon
+mixin
+mixins
+pytests
+cpp
+Buildfarm
+Codecov
+stdout
+stderr
+deduplicates
+

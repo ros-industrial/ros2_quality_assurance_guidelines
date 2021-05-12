@@ -6,7 +6,7 @@ Code Coverage
 
 For ease-of-use and an alternative, you can check out the colcon
 `mixin plugins <https://github.com/colcon/colcon-mixin-repository>`__.
-To setup mixin, a quick guide is avaiable at :ref:`mxsetup`.
+To setup mixin, a quick guide is available at :ref:`mxsetup`.
 
 Setup
 ------
@@ -29,11 +29,11 @@ Via mixin
 ^^^^^^^^^
 
 .. important::
-   Ensure that colcon mixin is installed before proceeding. Checkout the quickguide on how to setup mixin here: :ref:`mxsetup`.
+   Ensure that colcon mixin is installed before proceeding. Checkout the quick guide on how to setup mixin here: :ref:`mxsetup`.
 
 This is an **alternative method** that uses ``mixin`` to compile
 and setup the test, which would be similar to the steps
-mentioned aboved.
+mentioned above.
 
 To build the package::
 

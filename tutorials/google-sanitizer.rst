@@ -8,12 +8,12 @@ the usage of these tools would be further elaborated in the following
 sections below.
 
 .. note::
-   Ensure that colcon mixin is installed if you want to make use of it. Checkout the quickguide on how to setup ``mixin`` here: :ref:`mxsetup`.
+   Ensure that colcon mixin is installed if you want to make use of it. Checkout the quick guide on how to setup ``mixin`` here: :ref:`mxsetup`.
 
-Prerequistes
-------------
+Prerequisites
+--------------
 
-(Recommended) If you want to use the santiser-report plugin, the
+(Recommended) If you want to use the sanitizer-report plugin, the
 ``colcon-sanitiser-reports`` plugin needs to be installed. It is
 a plugin for ``colcon test`` that that parses sanitizer issues
 from stdout/stderr, deduplicates the issues, and outputs
@@ -59,13 +59,13 @@ To generate the report for the *address sanitiser*, the ``colcon test`` would be
 2 files would be generated once the testing is done, which contains the results
 of the test: *test_results.xml, sanitizer_report.csv*
 
-Thread Sanitiser
+Thread Sanitizer
 ----------------
 
 Compilation
 ^^^^^^^^^^^
 
-Build the thread sanitiser with the following command::
+Build the thread sanitizer with the following command::
 
    colcon build --build-base=build-tsan --install-base=install-tsan \
    --cmake-args -DCMAKE_BUILD_TYPE=Debug \
@@ -89,8 +89,8 @@ Run the test and generate the report with the following command::
 Example
 -------
 We would be using the `packml_ros2 <https://github.com/1487quantum/packml_ros2>`__
-in this example, looking at the address sanitiser, followed by
-the thread sanitiser. Let’s git clone the repository::
+in this example, looking at the address sanitizer, followed by
+the thread sanitizer. Let’s git clone the repository::
 
    git clone https://github.com/1487quantum/packml_ros2.git ~/packml_ros2       # Clone the repo
    cd ~/packml_ros2                                                             # Enter the dir
@@ -142,8 +142,8 @@ The output would look something like this::
 
 **Thread Sanitiser**
 
-We'll now move on to the Thread Sanitiser. To run the *thread sanitiser*,
-the steps are similar to those of the address sanitiser, with some
+We'll now move on to the Thread Sanitizer. To run the *thread sanitizer*,
+the steps are similar to those of the address sanitizer, with some
 differences in the flag. Return to the root directory and remove the
 build files::
 
