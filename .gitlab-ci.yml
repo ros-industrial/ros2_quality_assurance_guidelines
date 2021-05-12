@@ -17,7 +17,8 @@ before_script:
   - DEBIAN_FRONTEND="noninteractive" apt-get install -y -qq texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended latexmk 
   
   # Install Sphinx
-  - python3 -m pip install --upgrade sphinx sphinx-rtd-theme
+  # docutils 0.17 currently breaks generation, set to 0.16 instead: https://github.com/readthedocs/sphinx_rtd_theme/issues/1115#issuecomment-814376813
+  - python3 -m pip install --upgrade sphinx sphinx-rtd-theme docutils==0.16 
 
   # Install Lint tools
   - DEBIAN_FRONTEND="noninteractive" apt-get install -y -qq enchant git
