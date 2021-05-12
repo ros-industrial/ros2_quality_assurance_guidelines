@@ -69,7 +69,7 @@ We would be using the `packml_ros2 <https://github.com/1487quantum/packml_ros2>`
    git clone https://github.com/1487quantum/packml_ros2.git ~/packml_ros2	# Clone the repo
    cd ~/packml_ros2								# Enter the dir
 
-Let's compile the files in ``rclpy/topics/`` with the ``coverage`` flag::
+Let's compile the files with the ``coverage`` flag::
    
    colcon build --cmake-args -DCMAKE_C_FLAGS='--coverage' -DCMAKE_CXX_FLAGS='--coverage' 
 
