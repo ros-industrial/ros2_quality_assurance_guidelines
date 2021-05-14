@@ -16,5 +16,5 @@ ROS-powered packages or projects could utilize. Some features include:
    More information on the Industrial CI could be found `here <https://github.com/ros-industrial/industrial_ci/>`__.
 
 In the subsequent sections, we would be looking at some ways in which the
-Industrial CI could be integrated into your projects. 
+Industrial CI could be integrated into your projects.
 

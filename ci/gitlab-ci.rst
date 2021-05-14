@@ -9,23 +9,16 @@ Here is an example.
 
 .. code-block:: yaml
 
-   workflow:
-     rules:
-       - if: $CI_MERGE_REQUEST_ID
-       - if: $CI_COMMIT_TAG
-       - if: $CI_COMMIT_BRANCH
-
-   image: docker:git
-   services:
-     - docker:dind
-   before_script:
-     - apk add --update bash coreutils tar curl
-     - git clone --quiet --depth 1 https://github.com/ros-industrial/industrial_ci .industrial_ci -b master
+   image:
+     name: registry.gitlab.com/rosi-ap/rosiap_docker_images:moveit-foxy-nightly
 
    cache:
      key: ${CI_JOB_NAME}
      paths:
        - .ccache/
+
+   before_script:
+     - git clone --quiet --depth 1 https://github.com/ros-industrial/industrial_ci .industrial_ci -b master
 
    variables:
      TMPDIR: "${CI_PROJECT_DIR}.tmp"
@@ -34,16 +27,18 @@ Here is an example.
 
    foxy-main:
      variables:
+       ISOLATION: "shell"
        ROS_DISTRO: "foxy"
        ROS_REPO: "main"
-       script:
+     script:
          - .industrial_ci/gitlab.sh
 
    foxy-testing:
      variables:
+       ISOLATION: "shell"
        ROS_DISTRO: "foxy"
        ROS_REPO: "testing"
-       script:
+     script:
          - .industrial_ci/gitlab.sh
 
 Trigger CI Pipeline

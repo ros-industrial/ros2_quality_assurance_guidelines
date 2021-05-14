@@ -26,4 +26,6 @@ travis
 yml
 uploader
 textbox
+pre
+Prerelease
 
