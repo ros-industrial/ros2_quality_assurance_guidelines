@@ -4,9 +4,9 @@ Industrial CI with Github Action
 Setup Configuration File
 -------------------------
 
-Add a ``.yml`` config file in the :file:`.github/workflows` directory. Create
-the :file:`.github/workflows` directory if it does not exists, and then the
-configuration file. We would be naming the config file as ``gh-act.yml``::
+Add a ``.yml`` configuration file in the :file:`.github/workflows` directory.
+Create the :file:`.github/workflows` directory if it does not exists, and
+then the configuration file as ``gh-act.yml``::
 
    mkdir -p .github/workflows
    touch .github/workflows/gh-act.yml

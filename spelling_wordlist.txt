@@ -21,4 +21,9 @@ Codecov
 stdout
 stderr
 deduplicates
+CI
+travis
+yml
+uploader
+textbox
 
