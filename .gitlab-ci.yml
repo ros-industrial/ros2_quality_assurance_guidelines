@@ -37,7 +37,7 @@ build:
     paths:
       - _build/html/
       - _build/latex/rosi-apci.pdf
-    expire_in: 1 week
+    expire_in: 1 day
 
 style:
   stage: style
