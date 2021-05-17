@@ -75,7 +75,13 @@ configuration file located in ``.github/workflows`` directory:
          - uses: 'ros-industrial/industrial_ci@master'
            env: ${{matrix.env}}
          - uses: codecov/codecov-action@v1
-           # token: ${{ secrets.CODECOV_TOKEN }} # For private repo
+          #token: ${{ secrets.CODECOV_TOKEN }} # For private repo
+
+.. note::
+
+   The ``CODECOV_TOKEN`` is required for private repository, but optional
+   for public repository.
+
 
 Via Travis CI
 ~~~~~~~~~~~~~~
@@ -88,7 +94,12 @@ upload the report to Codecov:
    env:
      global:
       - CODE_COVERAGE="codecov.io"
-     # - CODECOV_TOKEN="..." # For private repo
+     #- CODECOV_TOKEN="..." # For private repo
+
+.. note::
+
+   The ``CODECOV_TOKEN`` is required for private repository, but optional
+   for public repository.
 
 .. _gl_token:
 
@@ -117,7 +128,7 @@ the ``.gitlab-ci.yml`` configuration file in the respective sections:
    ...
    variables:
      CODE_COVERAGE: "codecov.io"
-     CODECOV_TOKEN: "..."
+     CODECOV_TOKEN: $CODECOV_TOKEN
 
 
 Coveralls
@@ -160,23 +171,19 @@ job section) to your github action configuration file located in
 
 .. code-block:: YAML
 
-   name: CI
-   on: [push, pull_request]
+   ...
    jobs:
      industrial_ci:
        strategy:
          matrix:
            env:
-             - {ROS_DISTRO: eloquent, ROS_REPO: main}
+             - {ROS_DISTRO: foxy, ROS_REPO: main}
        env:
-         CODE_COVERAGE: codecov.io
+         CODE_COVERGAE: coveralls.io
+         COVERALLS_REPO_TOKEN: "..."
        runs-on: ubuntu-latest
        steps:
-         - uses: actions/checkout@v1
-         - uses: 'ros-industrial/industrial_ci@master'
-           env: ${{matrix.env}}
-         - uses: codecov/codecov-action@v1
-           # token: ${{ secrets.CODECOV_TOKEN }} # For private repo
+       ...
 
 Via Travis CI
 ~~~~~~~~~~~~~~
@@ -189,7 +196,7 @@ upload the report to ``coveralls``:
    env:
      global:
       - CODE_COVERAGE="coveralls.io"
-      # - COVERALLS_REPO_TOKEN=".." # For private repo
+    # - COVERALLS_REPO_TOKEN=".." # For private repo
 
 Via Gitlab CI
 ~~~~~~~~~~~~~~
@@ -214,7 +221,7 @@ file in the respective sections:
    ...
    variables:
      CODE_COVERAGE: "coveralls.io"
-     COVERALLS_REPO_TOKEN: "..."
+     COVERALLS_REPO_TOKEN: $COVERALLS_TOKEN
 
 
 Overall example configuration(s)
@@ -239,7 +246,7 @@ Gitlab CI
        - .ccache/
 
    before_script:
-     #  - git clone --quiet --depth 1 https://github.com/ros-industrial/industrial_ci .industrial_ci -b master
+  #  - git clone --quiet --depth 1 https://github.com/ros-industrial/industrial_ci .industrial_ci -b master
 
      - apk add --update bash coreutils tar grep curl           # Install industrial_ci dependencies
      - apk add --update python3 py3-pip python3-dev            # Extra tools needed for coveralls.io, can comment out if using codecov
@@ -274,8 +281,6 @@ Gitlab CI
 
      script:
          - .industrial_ci/gitlab.sh
-
-
 
 Travis CI
 ~~~~~~~~~~
