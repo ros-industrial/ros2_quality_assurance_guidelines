@@ -294,5 +294,38 @@ Github Actions CI
 
 .. code-block:: YAML
 
-   Coming soon...
+   name: GH-Actions-CI
 
+   # This determines when this workflow is run
+   on: [push, pull_request] # on all pushes and PRs
+
+   jobs:
+     industrial_ci:
+       strategy:
+         matrix:
+           env:
+              - {ROS_DISTRO: foxy, ROS_REPO: testing}
+              - {ROS_DISTRO: foxy, ROS_REPO: main}
+       env:
+         CCACHE_DIR: /github/home/.ccache                          # Directory for ccache (and how we enable ccache in industrial_ci)
+         CODE_COVERAGE: coveralls.io                               # Select either codecov.io or coveralls.io, else comment it out
+         COVERALLS_REPO_TOKEN:  ${{ secrets.COVERALLS_TOKEN }}     # Required only for coveralls, set repo secret in settings
+
+       runs-on: ubuntu-latest
+       steps:
+         - uses: actions/checkout@v2
+         # This step will fetch/store the directory used by ccache before/after the ci run
+         - uses: actions/cache@v2
+           with:
+             path: ${{ env.CCACHE_DIR }}
+             key: ccache-${{ matrix.env.ROS_DISTRO }}-${{ matrix.env.ROS_REPO }}
+         # Run industrial_ci
+         #- uses: 'ros-industrial/industrial_ci@master'
+         - uses: 'Briancbn/industrial_ci@pr-coverage-rebased'    # For code coverage upload service, use this branch for now. Else, use the main one above.
+           env: ${{ matrix.env }}
+
+         # Upload report for codecov, not required for coveralls
+         #- name: Codecov report upload
+         #  uses: codecov/codecov-action@v1.5.0
+         #  with:
+         #    token: ${{ secrets.CODECOV_TOKEN }}
