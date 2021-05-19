@@ -1,7 +1,9 @@
 ROS 2 Continuous Integration Documentation
 ==========================================
 
-.. image:: https://img.shields.io/gitlab/pipeline/ROSI-AP/rosi-ap_ci/sphinx-devel?style=for-the-badge
+.. image:: https://gitlab.com/ROSI-AP/rosi-ap_ci/badges/sphinx-devel/pipeline.svg
+    :target: https://gitlab.com/ROSI-AP/rosi-ap_ci/-/commits/sphinx-devel
+    :alt: Gitlab CI status
 
 This document contains instructions for integrating CI into the development
 workflow of ROS 2.0 packages under ROS-Industrial Consortium Asia Pacific.
