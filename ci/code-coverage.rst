@@ -94,12 +94,23 @@ upload the report to Codecov:
    env:
      global:
       - CODE_COVERAGE="codecov.io"
-     #- CODECOV_TOKEN="..." # For private repo
+      #- CODECOV_TOKEN=$CODECOV_TOKEN  # For private repo
 
 .. note::
 
    The ``CODECOV_TOKEN`` is required for private repository, but optional
    for public repository.
+
+.. _travis_token:
+
+CODECOV_TOKEN setup
+^^^^^^^^^^^^^^^^^^^^
+
+The ``CODECOV_TOKEN`` could be set by entering the settings of the repository,
+under ``More options > Settings``, and fill in the fields under the
+Environmental variables.
+
+.. image:: ../assets/travis_setup.png
 
 .. _gl_token:
 
@@ -196,7 +207,11 @@ upload the report to ``coveralls``:
    env:
      global:
       - CODE_COVERAGE="coveralls.io"
-    # - COVERALLS_REPO_TOKEN=".." # For private repo
+      #- COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN # For private repo
+
+.. note::
+
+   Refer to :ref:`travis_token` for more details on setting up the ``COVERALLS_TOKEN``.
 
 Via Gitlab CI
 ~~~~~~~~~~~~~~
@@ -287,7 +302,31 @@ Travis CI
 
 .. code-block:: YAML
 
-   Coming soon...
+   language: generic
+   services:
+     - docker
+
+   cache:
+     directories:
+       - $HOME/.ccache
+
+   env:
+     global:
+       - CCACHE_DIR=$HOME/.ccache
+       - CODE_COVERAGE="coveralls.io"			           # Or codecov.io, comment it if not in use
+       - CODECOV_TOKEN=$CODECOV_TOKEN               # For private repo
+       #- COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN     # For private repo
+
+     matrix:
+       - ROS_DISTRO="foxy" ROS_REPO=testing
+       - ROS_DISTRO="foxy" ROS_REPO=main
+
+   install:
+     #- git clone --quiet --depth 1 https://github.com/ros-industrial/industrial_ci.git .industrial_ci -b master     # Default
+     - git clone --quiet --depth 1 https://github.com/Briancbn/industrial_ci/ .industrial_ci -b pr-coverage-rebased  # For code coverage service
+
+   script:
+     - .industrial_ci/travis.sh
 
 Github Actions CI
 ~~~~~~~~~~~~~~~~~~
