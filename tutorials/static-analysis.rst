@@ -175,6 +175,144 @@ Lastly simply run the build and test command to invoke static analysis.
    ``ament_uncrustify --reformat <file>`` to automatically fix the linter issue
    with your file.
 
+Example
+^^^^^^^
+
+We would be looking at ``packml_sm`` inside the `packml_ros2 <https://github.com/1487quantum/packml_ros2/>`__ package as an example.
+As seen from the previous section, the package follows the similar structure
+of a C++ ROS2 package::
+
+   |-- packml_sm
+       |-- include/packml_sm    <- header files
+       |-- src                     <- .cpp files
+       |-- test                    <- unit test files
+       |-- CMakeLists.txt
+       |-- package.xml
+
+Next, let's take a look at the ``package.xml``:
+
+.. code-block:: xml
+  :emphasize-lines: 26, 27
+
+  <?xml version="1.0"?>
+  <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+  <package format="3">
+    <name>packml_sm</name>
+    <version>0.0.0</version>
+    <description>Packml state machine</description>
+    <maintainer email="chenbn@artc.a-star.edu.sg">Chen Bainian</maintainer>
+    <maintainer email="dejanira.araiza.i@gmail.com">Dejanira Araiza-Illan</maintainer>
+    <license>Apache-2.0</license>
+
+    <buildtool_depend>ament_cmake</buildtool_depend>
+
+    <build_depend>rclcpp</build_depend>
+    <build_depend>rqt_gui_cpp</build_depend>
+    <build_depend>qtbase5-dev</build_depend>
+    <build_depend>packml_msgs</build_depend>
+
+    <exec_depend>rclcpp</exec_depend>
+    <exec_depend>libqt5-core</exec_depend>
+    <exec_depend>libqt5-gui</exec_depend>
+    <exec_depend>libqt5-opengl</exec_depend>
+    <exec_depend>libqt5-widgets</exec_depend>
+    <exec_depend>rqt_gui_cpp</exec_depend>
+    <exec_depend>packml_msgs</exec_depend>
+
+    <test_depend>ament_lint_auto</test_depend>
+    <test_depend>ament_lint_common</test_depend>
+    <test_depend>ament_cmake_gtest</test_depend>
+
+    <export>
+      <build_type>ament_cmake</build_type>
+    </export>
+  </package>
+
+The ``test_depend`` tags are used to declare the ``ament_lint_auto`` &
+``ament_lint_common`` packages to be listed as dependencies used during
+testing. Next up, we would be looking at ``CMakeLists.txt``:
+
+.. code-block:: cmake
+  :emphasize-lines: 57, 58
+
+  cmake_minimum_required(VERSION 3.5)
+  project(packml_sm)
+
+  set(CMAKE_XX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++")
+
+  # Default to C99
+  if(NOT CMAKE_C_STANDARD)
+    set(CMAKE_C_STANDARD 99)
+  endif()
+
+  # Default to C++14
+  if(NOT CMAKE_CXX_STANDARD)
+    set(CMAKE_CXX_STANDARD 14)
+  endif()
+
+  if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    add_compile_options(-Wall -Wextra -Wpedantic)
+  endif()
+
+  # prevents weird Qt error
+  #set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+  # find dependencies
+  find_package(ament_cmake REQUIRED)
+  find_package(rclcpp REQUIRED)
+  find_package(rqt_gui_cpp REQUIRED)
+  find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
+
+  #include all directories
+  include_directories(
+    include
+  )
+
+  qt5_wrap_cpp(packml_sm_MOCS include/packml_sm/state_machine.hpp
+    include/packml_sm/state.hpp
+    include/packml_sm/transitions.hpp
+    include/packml_sm/events.hpp
+    include/packml_sm/common.hpp)
+
+  #add libraries
+  add_library(${PROJECT_NAME} SHARED
+    src/state_machine.cpp
+    src/state.cpp
+    src/transitions.cpp
+    ${packml_sm_MOCS})
+  ament_target_dependencies(${PROJECT_NAME} rclcpp rqt_gui_cpp Qt5)
+
+  #install
+  install(TARGETS ${PROJECT_NAME}
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION lib/${PROJECT_NAME})
+
+  install(DIRECTORY include/${PROJECT_NAME} DESTINATION include)
+
+  if(BUILD_TESTING)
+    find_package(ament_lint_auto REQUIRED)
+    ament_lint_auto_find_test_dependencies()
+
+    find_package(ament_cmake_gtest REQUIRED)
+    ament_add_gtest(${PROJECT_NAME}_utest test/utest.cpp)
+    ament_target_dependencies(${PROJECT_NAME}_utest rclcpp rqt_gui_cpp Qt5)
+    target_link_libraries(${PROJECT_NAME}_utest ${PROJECT_NAME})
+
+  endif()
+
+  #Substituting the catkin_package () components:
+  #INCLUDE_DIRS
+  ament_export_include_directories(include)
+  #LIBRARIES
+  ament_export_libraries(${PROJECT_NAME})
+  #CATKIN_DEPENDS
+  ament_export_dependencies(rqt_gui_cpp)
+
+  ament_package()
+
+Similarly, the packages are declared after the ``BUILD_TESTING`` condition.
+
 Python Static Analysis
 ----------------------
 
@@ -270,3 +408,134 @@ Lastly simply run the build and test command to invoke static analysis.
 
    colcon build
    colcon test --packages-select <package_name> --event-handlers console_direct+
+
+Example setup
+^^^^^^^^^^^^^^
+
+We would be looking at ``packml_plc`` inside the `packml_ros2 <https://github.com/1487quantum/packml_ros2/>`__ package as an example.
+As seen from the previous section, the package follows the similar structure
+of a Python ROS2 package::
+
+   |-- *packml_ros2
+     |-- packml_plc            <- .py files
+     |-- resource              <- data files
+     |-- test                  <- static analysis and unit tests
+     |-- package.xml
+     |-- setup.cfg
+     |-- setup.py
+
+Dependencies
+~~~~~~~~~~~~
+
+Next, let's take a look at the ``package.xml``:
+
+.. code-block:: xml
+  :emphasize-lines: 16, 17, 18, 19, 20
+
+  <?xml version="1.0"?>
+  <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+  <package format="3">
+    <name>packml_plc</name>
+    <version>0.0.0</version>
+    <description>Package to control and monitor a PackML state machine following the standard template in a Siemens PLC with OPCUA tags</description>
+    <maintainer email="chenbn@artc.a-star.edu.sg">Chen Bainian</maintainer>
+    <maintainer email="dejanira.araiza.i@gmail.com">Dejanira Araiza-Illan</maintainer>
+
+    <license>Apache 2.0</license>
+    <exec_depend>std_msgs</exec_depend>
+    <exec_depend>rclpy</exec_depend>
+    <exec_depend>packml_msgs</exec_depend>
+    <exec_depend>opcua-pip</exec_depend>
+
+    <test_depend>ament_copyright</test_depend>
+    <test_depend>ament_flake8</test_depend>
+    <test_depend>ament_pep257</test_depend>
+    <test_depend>ament_xmllint</test_depend>
+    <test_depend>python3-pytest</test_depend>
+    <test_depend>ros_testing</test_depend>
+
+    <export>
+  <build_type>ament_python</build_type>
+    </export>
+  </package>
+
+The ``test_depend`` tags are used to declare the packages highlighted
+as dependencies used for static analysis. Next up, we would be looking
+at ``setup.py``, where the ``tests_require`` field is inserted after the
+license & description of the python package.
+
+.. code-block:: python
+  :emphasize-lines: 27
+
+  ...
+  package_name = 'packml_plc'
+  setup(
+      name=package_name,
+      version='0.0.0',
+      packages=find_packages(exclude=['test']),
+      data_files=[
+          ('share/ament_index/resource_index/packages',
+              ['resource/' + package_name]),
+          ('share/' + package_name, ['package.xml']),
+      ],
+      install_requires=['setuptools'],
+      zip_safe=True,
+      maintainer='Chen Bainian',
+      maintainer_email='chenbn@artc.a-star.edu.sg',
+      author='Dejanira Araiza Illan',
+      author_email='dejanira.araiza.i@gmail.com',
+      keywords=['ROS2'],
+      classifiers=[
+          'Intended Audience :: Users',
+          'License :: Apache 2.0',
+          'Programming Language :: Python',
+          'Topic :: Software Development',
+      ],
+      description='Packml PLC driver',
+      license='Apache 2.0',
+      tests_require=['pytest'],
+      entry_points={
+          'console_scripts': [
+              'packml_plc_listener = packml_plc.packml_plc_listener:main',
+              'packml_plc_sender = packml_plc.packml_plc_sender:main',
+          ],
+      },
+  )
+
+Tests
+~~~~~
+
+When ``pytest`` is ran, files that start with "test" would be
+automatically executed. Let's take a look at ``test/test_pep257.py``:
+
+.. code-block:: python
+
+  # Copyright (c) 2019 ROS-Industrial Consortium Asia Pacific
+  #
+  # Licensed under the Apache License, Version 2.0 (the "License");
+  # you may not use this file except in compliance with the License.
+  # You may obtain a copy of the License at
+  #
+  #     http://www.apache.org/licenses/LICENSE-2.0
+  #
+  # Unless required by applicable law or agreed to in writing, software
+  # distributed under the License is distributed on an "AS IS" BASIS,
+  # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  # See the License for the specific language governing permissions and
+  # limitations under the License.
+
+  from ament_pep257.main import main
+  import pytest
+
+
+  @pytest.mark.linter
+  @pytest.mark.pep257
+  def test_pep257():
+      rc = main(argv=[])
+      assert rc == 0, 'Found code style errors / warnings'
+
+As seen from above, the test script includes the copyright header at
+the top of the test file, and it utilizes the ``ament_pep257`` library for
+the test. For more examples on how to the various test files are created,
+the `test` directory of the `packml_ros2 <https://github.com/1487quantum/packml_ros2/>`__
+package can be referenced.
