@@ -76,3 +76,86 @@ Others
 For other dependencies that are not under **standard debian(apt)** or can
 not be built using ``colcon build``, document the setup process in detail and
 setup accordingly in the CI as instructed in the Common Issue section.
+
+Example: Using vcstool
+-----------------------
+
+In this example, we would be looking at how ``vcstool`` could be used
+to automate the import of a few packages into a workspace, without the need
+to manually clone the repository into the workspace.
+
+Setup
+~~~~~
+
+Ensure that the ``vsctool`` is installed before proceeding:
+
+.. code-block:: bash
+
+  sudo apt install python3-vsctool
+
+.. important::
+
+  Note that we are using ``vcstool``, which is different from ``vcstools``!
+
+After the installation has been completed, we would proceed to create a new
+workspace for this example. Let's create a workspace called ``vcs_ws``:
+
+.. code-block:: bash
+
+  mkdir -p ~/vcs_ws/src
+  cd ~/vcs_ws/
+
+Build the workspace & source the setup file::
+
+  colcon build
+  . install/setup.bash
+
+.. note::
+
+  If you are not using the ``bash`` shell, change the extension of the setup file accordingly.
+  For example, if you are using ``zsh``, use ``setup.zsh`` instead.
+
+Next create the ``req.repos`` file and open it with you favorite text editor.
+This file would list the dependencies or packages that would be downloaded
+into the workspace. Copy the following content below into ``req.repos`` and
+save the file.
+
+.. code-block:: yaml
+
+  repositories:
+    rtpkg:
+      type: git
+      url: https://github.com/1487quantum/rtpkg.git
+      version: main
+    packml_ros2:
+      type: git
+      url: https://github.com/1487quantum/packml_ros2.git
+      version: master
+
+The ``req.repos`` file created contains the configuration to clone the
+``packml_ros2`` and the ``rtpkg`` packages. The title of the repository
+would be the header, and the ``version`` field is used to specify the
+repository branch.
+
+After that, we would use the ``vcs`` tool to import these repository
+into the workspace::
+
+  vcs import --recursive src < req.repos
+
+This would clone the repositories stated in the ``.repos`` file into
+the ``src`` directory. Check whether the repositories are cloned into
+the ``src/`` directory:
+
+.. code-block:: bash
+
+  cd ~/vcs_ws/src
+  ls
+
+The output would look something like this:
+
+.. code-block:: bash
+
+  ubuntu@ubuntu:~/vcs_ws/src$ ls
+  packml_ros2  rtpkg_msg
+
+
