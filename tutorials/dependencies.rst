@@ -133,9 +133,9 @@ save the file.
       version: master
 
 The ``req.repos`` file created contains the configuration to clone the
-``packml_ros2`` and the ``rtpkg`` packages. The title of the repository
-would be the header, and the ``version`` field is used to specify the
-repository branch.
+``packml_ros2`` and the ``rtpkg`` packages. The name of the repository
+would be the determined by the header, and the ``version`` field is used
+to specify the repository branch.
 
 After that, we would use the ``vcs`` tool to import these repository
 into the workspace::

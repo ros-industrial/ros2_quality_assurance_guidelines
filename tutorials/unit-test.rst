@@ -52,7 +52,6 @@ Catch2
 
 .. TODO(Briancbn)
 
-
 Python Unit Test
 ----------------
 
