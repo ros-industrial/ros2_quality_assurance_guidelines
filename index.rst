@@ -55,3 +55,4 @@ into the development workflow.
    :caption: Guide
 
    faq/mixin-setup
+   faq/catch2-setup
