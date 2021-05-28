@@ -26,6 +26,3 @@ After that, run ``CMake`` to compile and install the package.
 With that, ``Catch2`` should be installed! (The library would be installed
 in the ``/usr/local/`` directory by default) More details on the CMake
 customization could be found `here <https://github.com/catchorg/Catch2/blob/v2.x/docs/cmake-integration.md>`__.
-
-
-  

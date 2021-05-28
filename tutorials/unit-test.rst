@@ -127,7 +127,7 @@ And the following lines in ``CMakeLists.txt``:
 Example
 ~~~~~~~~
 
-Example usage of ``Catch2`` unit testing cound be found in the `rtpkg repository <https://github.com/1487quantum/rtpkg>`__:
+Example usage of ``Catch2`` unit testing could be found in the `rtpkg repository <https://github.com/1487quantum/rtpkg>`__:
 
 - CMakeLists.txt
 - package.xml
