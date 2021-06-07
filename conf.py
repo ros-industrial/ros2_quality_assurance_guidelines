@@ -60,5 +60,5 @@ html_static_path = ['_static']
 
 latex_documents = [
   ('index', 'rosi-apci.tex', '',
-   'Chen Bainian \\and Alex Chua Zhi Hao \\and Dejanira Araiza Illan', 'manual'),
+   'Chen Bainian \\and Wong Wen Kang \\and Dejanira Araiza Illan \\and Alex Chua Zhi Hao', 'manual'),
 ]

@@ -1,8 +1,8 @@
 ROS 2 Continuous Integration Documentation
 ==========================================
 
-.. image:: https://gitlab.com/ROSI-AP/rosi-ap_ci/badges/sphinx-devel/pipeline.svg
-    :target: https://gitlab.com/ROSI-AP/rosi-ap_ci/-/commits/sphinx-devel
+.. image:: https://gitlab.com/ROSI-AP/rosi-ap_ci/badges/master/pipeline.svg
+    :target: https://gitlab.com/ROSI-AP/rosi-ap_ci/-/commits/master
     :alt: Gitlab CI status
 
 This document contains instructions for integrating CI into the development
@@ -12,16 +12,17 @@ We provide the documentation in
 * `Web Format`_
 * `PDF Format`_
 
-.. _Web Format: https://gitlab.com/ROSI-AP/rosi-ap_ci/-/jobs/artifacts/sphinx-devel/file/_build/html/index.html?job=build
-.. _PDF Format: https://gitlab.com/ROSI-AP/rosi-ap_ci/-/jobs/artifacts/sphinx-devel/file/_build/latex/rosi-apci.pdf?job=build
+.. _Web Format: https://gitlab.com/ROSI-AP/rosi-ap_ci/-/jobs/artifacts/master/file/_build/html/index.html?job=build
+.. _PDF Format: https://gitlab.com/ROSI-AP/rosi-ap_ci/-/jobs/artifacts/master/file/_build/latex/rosi-apci.pdf?job=build
 
 
 Contributors
 ------------
 
-* Alex Chua Zhi Hao
 * Chen Bainian
+* Wong Wen Kang
 * Dejanira Araiza Illan
+* Alex Chua Zhi Hao
 
 
 Reference
