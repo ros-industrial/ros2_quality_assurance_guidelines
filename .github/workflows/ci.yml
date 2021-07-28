@@ -1,0 +1,42 @@
+name: doc
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        sudo apt update && sudo apt install -y enchant graphviz
+        python -m pip install --upgrade setuptools
+        python -m pip install --upgrade doc8 pyenchant sphinx-rtd-theme sphinxcontrib-spelling
+    - name: Check spelling
+      # show list of misspelled words
+      run: |
+        mkdir _build
+        make spelling
+        if [[ -s "_build/spelling/index.spelling" ]]; then
+          cat "_build/spelling/index.spelling"
+        fi
+    - name: Build documentation
+      run: |
+        make html
+    - name: Lint generated documentation
+      run: |
+        doc8 --ignore-path _build --max-line-length 999
+    - name: Warnings and spelling errors fail the build
+      run: |
+        if [[ -s "_build/warnings_and_errors.log" ]]; then
+          cat "_build/warnings_and_errors.log"
+          false
+        fi
+        if [[ -s "_build/spelling/index.spelling" ]]; then
+          cat "_build/spelling/index.spelling"
+          false
+        fi
