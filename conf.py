@@ -22,7 +22,7 @@ copyright = '2021, ROS Industrial Asia Pacific'
 author = 'Chen Bainian'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.0-rc1'
+release = '1.0.0-rc2'
 
 
 # -- General configuration ---------------------------------------------------
