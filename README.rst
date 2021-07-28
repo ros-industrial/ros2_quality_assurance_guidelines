@@ -1,9 +1,9 @@
 ROS 2 Continuous Integration Documentation
 ==========================================
 
-.. image:: https://gitlab.com/ROSI-AP/rosi-ap_ci/badges/master/pipeline.svg
-    :target: https://gitlab.com/ROSI-AP/rosi-ap_ci/-/commits/master
-    :alt: Gitlab CI status
+.. image:: https://github.com/Briancbn/ros2-quality-assurance/actions/workflows/ci.yml/badge.svg?branch=main
+    :target: https://github.com/Briancbn/ros2-quality-assurance/actions/workflows/ci.yml
+    :alt: Github Action Status
 
 This document contains instructions for integrating CI into the development
 workflow of ROS 2.0 packages under ROS-Industrial Consortium Asia Pacific.
