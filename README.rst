@@ -4,6 +4,9 @@ ROS 2 Continuous Integration Documentation
 .. image:: https://github.com/Briancbn/ros2-quality-assurance/actions/workflows/ci.yml/badge.svg?branch=main
     :target: https://github.com/Briancbn/ros2-quality-assurance/actions/workflows/ci.yml
     :alt: Github Action Status
+.. image:: https://img.shields.io/github/license/Briancbn/ros2-quality-assurance
+   :target: https://github.com/Briancbn/ros2-quality-assurance/blob/main/LICENSE
+   :alt: License
 
 This document contains instructions for integrating CI into the development
 workflow of ROS 2.0 packages under ROS-Industrial Consortium Asia Pacific.
@@ -12,8 +15,8 @@ We provide the documentation in
 * `Web Format`_
 * `PDF Format`_
 
-.. _Web Format: https://gitlab.com/ROSI-AP/rosi-ap_ci/-/jobs/artifacts/master/file/_build/html/index.html?job=build
-.. _PDF Format: https://gitlab.com/ROSI-AP/rosi-ap_ci/-/jobs/artifacts/master/file/_build/latex/rosi-apci.pdf?job=build
+.. _Web Format: https://ros2-quality-assurance.readthedocs.io/en/released/
+.. _PDF Format: https://ros2-quality-assurance.readthedocs.io/_/downloads/en/released/pdf/
 
 
 Contributors
