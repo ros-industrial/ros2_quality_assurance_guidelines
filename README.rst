@@ -1,11 +1,11 @@
 ROS 2 Continuous Integration Documentation
 ==========================================
 
-.. image:: https://github.com/Briancbn/ros2-quality-assurance/actions/workflows/ci.yml/badge.svg?branch=main
-    :target: https://github.com/Briancbn/ros2-quality-assurance/actions/workflows/ci.yml
+.. image:: https://github.com/ros-industrial/ros2_quality_assurance_guidelines/actions/workflows/ci.yml/badge.svg?branch=main
+    :target: https://github.com/ros-industrial/ros2_quality_assurance_guidelines/actions/workflows/ci.yml
     :alt: Github Action Status
-.. image:: https://img.shields.io/github/license/Briancbn/ros2-quality-assurance
-   :target: https://github.com/Briancbn/ros2-quality-assurance/blob/main/LICENSE
+.. image:: https://img.shields.io/github/license/ros-industrial/ros2_quality_assurance_guidelines
+   :target: https://github.com/ros-industrial/ros2_quality_assurance_guidelines/blob/main/LICENSE
    :alt: License
 
 This document contains instructions for integrating CI into the development
